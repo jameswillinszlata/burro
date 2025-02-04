@@ -1,6 +1,8 @@
 // pages/zlata.js
 'use client';
 
+import Image from "next/image";
+import Link from "next/link";
 import { useState } from 'react';
 import styles from '../styles/Home.module.css';
 
@@ -18,10 +20,10 @@ export default function Zlata() {
   return (
     <div className={styles.container}>
       <div className={styles.menu}>
-        <a href="/">Home</a>
-        <a href="/burro">Burro</a>
-        <a href="/jamesWillins">James Willins</a>
-        <a href="/zlata">Zlata</a>
+        <Link href="/">Home</Link>
+        <Link href="/burro">Burro</Link>
+        <Link href="/jamesWillins">James Willins</Link>
+        <Link href="/zlata">Zlata</Link>
       </div>
 
       <div className={styles.zlata}>
@@ -36,14 +38,14 @@ export default function Zlata() {
         {risultato === 'destra' && (
           <div className={styles.risultato}>
             <p>Ora puoi avere la White Coco Zlata!</p>
-            <img src="/white-coco.jpeg" alt="White Coco Zlata" className={styles.image} />
+            <Image src="/white-coco.jpeg" alt="White Coco Zlata" className={styles.image} />
           </div>
         )}
         
         {risultato === 'sinistra' && (
           <div className={styles.risultato}>
             <p>Oh no, sei stato scippato da dei magreb!</p>
-            <img src="/scippato.jpeg" alt="Scippato" className={styles.image} />
+            <Image src="/scippato.jpeg" alt="Scippato" className={styles.image} />
           </div>
         )}
       </div>

@@ -1,6 +1,8 @@
 // pages/jamesWillins.js
 'use client';
 
+import Image from "next/image";
+import Link from "next/link";
 import { useState } from 'react';
 import styles from '../styles/Home.module.css';
 
@@ -14,13 +16,13 @@ export default function JamesWillins() {
   return (
     <div className={styles.container}>
       <div className={styles.menu}>
-        <a href="/">Home</a>
-        <a href="/burro">Burro</a>
-        <a href="/zlata">Zlata</a>
+        <Link href="/">Home</Link>
+        <Link href="/burro">Burro</Link>
+        <Link href="/zlata">Zlata</Link>
       </div>
 
       <div className={styles.jamesWillins}>
-        <img src="/cowboy.jpeg" alt="Cowboy" />
+        <Image src="/cowboy.jpeg" alt="Cowboy" />
         <p>Sei per caso un pippadores?</p>
         <button onClick={() => rispondi('si')}>Sì</button>
         <button onClick={() => rispondi('no')}>No</button>
@@ -28,13 +30,13 @@ export default function JamesWillins() {
 
       {risposta === 'si' && (
         <div className={styles.risposta}>
-          <img src="/andrea.jpeg" alt="Andrea" />
+          <Image src="/andrea.jpeg" alt="Andrea" />
           <p>Sei un vero dipreista!</p>
         </div>
       )}
       {risposta === 'no' && (
         <div className={styles.risposta}>
-          <img src="/police.jpeg" alt="Poliziotto" />
+          <Image src="/police.jpeg" alt="Poliziotto" />
           <p>Sei stato arrestato!</p>
         </div>
       )}

@@ -1,6 +1,8 @@
 // pages/burro.js
 'use client';
 
+import Image from "next/image";
+import Link from "next/link";
 import { useState } from 'react';
 import styles from '../styles/Home.module.css';
 
@@ -14,13 +16,13 @@ export default function Burro() {
   return (
     <div className={styles.container}>
       <div className={styles.menu}>
-        <a href="/">Home</a>
-        <a href="/jamesWillins">James Willins</a>
-        <a href="/zlata">Zlata</a>
+        <Link href="/">Home</Link>
+        <Link href="/jamesWillins">James Willins</Link>
+        <Link href="/zlata">Zlata</Link>
       </div>
 
       <div className={styles.burro}>
-        <img src="/evil-butter.png" alt="Burro Malvagio" />
+        <Image src="/evil-butter.png" alt="Burro Malvagio" />
         <p>Sei stato hackerato, dammi il tuo IBAN!</p>
         <input
           type="text"

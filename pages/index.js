@@ -1,6 +1,7 @@
 // pages/index.js
 'use client'; // Necessario per usare useState in Next.js
 
+import Image from "next/image";
 import { useState } from 'react';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
@@ -26,12 +27,12 @@ export default function Home() {
       <div className={styles.home}>
         {isBurroClicked ? (
           <>
-            <img src="/imburrato.webp" alt="Imburrato" className={styles.image} />
+            <Image src="/imburrato.webp" alt="Imburrato" className={styles.image} />
             <p>Sei stato imburrato!</p>
           </>
         ) : (
           <div className={styles.burro} onClick={sbustareBurro}>
-            <img src="/burro.jpeg" alt="Burro" className={styles.image} />
+            <Image src="/burro.jpeg" alt="Burro" className={styles.image} />
             <p>Clicca!</p>
           </div>
         )}
