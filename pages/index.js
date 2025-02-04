@@ -27,12 +27,12 @@ export default function Home() {
       <div className={styles.home}>
         {isBurroClicked ? (
           <>
-            <Image src="/imburrato.webp" alt="Imburrato" className={styles.image} />
+            <Image src="/imburrato.webp" alt="Imburrato" width={500} height={300} className={styles.image} />
             <p>Sei stato imburrato!</p>
           </>
         ) : (
           <div className={styles.burro} onClick={sbustareBurro}>
-            <Image src="/burro.jpeg" alt="Burro" className={styles.image} />
+            <Image src="/burro.jpeg" alt="Burro"  width={500} height={300} className={styles.image} />
             <p>Clicca!</p>
           </div>
         )}

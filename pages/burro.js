@@ -22,7 +22,7 @@ export default function Burro() {
       </div>
 
       <div className={styles.burro}>
-        <Image src="/evil-butter.png" alt="Burro Malvagio" />
+        <Image src="/evil-butter.png" alt="Burro Malvagio" width={500} height={300} />
         <p>Sei stato hackerato, dammi il tuo IBAN!</p>
         <input
           type="text"

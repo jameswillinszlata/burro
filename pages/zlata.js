@@ -27,7 +27,7 @@ export default function Zlata() {
       </div>
 
       <div className={styles.zlata}>
-        <img src="/magre.jpeg" alt="Magre" />
+        <img src="/magre.jpeg" alt="Magre" width={200} height={200}/>
         <p>Vuoi la White Coco Zlata?</p>
         
         <div>
@@ -38,14 +38,14 @@ export default function Zlata() {
         {risultato === 'destra' && (
           <div className={styles.risultato}>
             <p>Ora puoi avere la White Coco Zlata!</p>
-            <Image src="/white-coco.jpeg" alt="White Coco Zlata" className={styles.image} />
+            <Image src="/white-coco.jpeg" alt="White Coco Zlata" width={300} height={300}className={styles.image} />
           </div>
         )}
         
         {risultato === 'sinistra' && (
           <div className={styles.risultato}>
             <p>Oh no, sei stato scippato da dei magreb!</p>
-            <Image src="/scippato.jpeg" alt="Scippato" className={styles.image} />
+            <Image src="/scippato.jpeg" alt="Scippato" width={300} height={300} className={styles.image} />
           </div>
         )}
       </div>

@@ -22,7 +22,7 @@ export default function JamesWillins() {
       </div>
 
       <div className={styles.jamesWillins}>
-        <Image src="/cowboy.jpeg" alt="Cowboy" />
+        <Image src="/cowboy.jpeg" alt="Cowboy" width={500} height={300}/>
         <p>Sei per caso un pippadores?</p>
         <button onClick={() => rispondi('si')}>Sì</button>
         <button onClick={() => rispondi('no')}>No</button>
@@ -30,13 +30,13 @@ export default function JamesWillins() {
 
       {risposta === 'si' && (
         <div className={styles.risposta}>
-          <Image src="/andrea.jpeg" alt="Andrea" />
+          <Image src="/andrea.jpeg" alt="Andrea" width={500} height={300}/>
           <p>Sei un vero dipreista!</p>
         </div>
       )}
       {risposta === 'no' && (
         <div className={styles.risposta}>
-          <Image src="/police.jpeg" alt="Poliziotto" />
+          <Image src="/police.jpeg" alt="Poliziotto" width={500} height={300}/>
           <p>Sei stato arrestato!</p>
         </div>
       )}
