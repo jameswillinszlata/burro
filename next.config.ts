@@ -8,6 +8,9 @@ module.exports = {
   trailingSlash: false,
   reactStrictMode: true,
 };
+module.exports = {
+  basePath: '/burro-james',
+};
 
 
 export default nextConfig;
