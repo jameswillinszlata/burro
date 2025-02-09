@@ -18,7 +18,7 @@ export default function Home() {
       {/* Menu di navigazione */}
       <div className={styles.menu}>
         <Link href="/">Home</Link>
-        <Link href="/burro">Burro</Link>
+        <Link href="/burro">Burroo</Link>
         <Link href="/jamesWillins">James Willins</Link>
         <Link href="/zlata">Zlata</Link>  {/* Aggiungi questo link */}
       </div>
