@@ -2,10 +2,16 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from 'react';
 import styles from '../styles/Home.module.css';
 
 export default function JamesWillins() {
-  
+  const [risposta, setRisposta] = useState(null);
+
+  const rispondi = (risposta) => {
+    setRisposta(risposta); // Imposta la risposta dell'utente
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.menu}>
@@ -16,7 +22,7 @@ export default function JamesWillins() {
       </div>
 
       <div className={styles.jamesWillins}>
-        <Image src="/cowboy.jpeg" alt="Cowboy" width={400} height={400} />
+        <Image src="/cowboy.jpeg" alt="Cowboy" width={400} height={400}/>
         <p>Sei per caso un pippadores?</p>
 
         {/* Bottoni con uno stile migliorato */}

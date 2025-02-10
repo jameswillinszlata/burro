@@ -1,12 +1,8 @@
-'use client';
-
 import Image from "next/image";
 import Link from "next/link";
 import styles from '../styles/Home.module.css'; // Importa il CSS qui
 
 export default function Si() {
-  
-  
   return (
     <div className={styles.container}>
       <div className={styles.menu}>
@@ -24,4 +20,4 @@ export default function Si() {
 
     </div>
   );
-}
+} 

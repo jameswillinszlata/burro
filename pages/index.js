@@ -1,13 +1,25 @@
 'use client';
 
 import Image from "next/image";
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
-  
+  const [isBurroClicked, setIsBurroClicked] = useState(false);
+  const [showTemporaryImage, setShowTemporaryImage] = useState(false);
+  const [showImburrato, setShowImburrato] = useState(false);
 
-  
+  const sbustareBurro = () => {
+    setIsBurroClicked(true);
+    setShowTemporaryImage(true); // Mostra l'immagine temporanea
+
+    // Dopo 3 secondi, nascondi l'immagine temporanea e mostra l'immagine finale
+    setTimeout(() => {
+      setShowTemporaryImage(false);
+      setShowImburrato(true); // Mostra l'immagine di "imburrato"
+    }, 1000); // 1 secondo di attesa
+  };
 
   return (
     <div className={styles.container}>
@@ -32,11 +44,11 @@ export default function Home() {
             {showTemporaryImage && (
               <div className={styles.temporaryImage}>
                 <Image
-                  src="/imbarazzato.jpg"
+                  src="/imbarazzato.jpg" // Usa l'immagine che vuoi mostrare temporaneamente
                   alt="Immagine temporanea"
                   width={300}
                   height={300}
-                  className={`${styles.image} ${styles.imageTemporanea}`}
+                  className={`${styles.image} ${styles.imageTemporanea}`} // Concatenazione corretta
                 />
               </div>
             )}

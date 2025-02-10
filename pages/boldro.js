@@ -1,18 +1,19 @@
 import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image'; // Usa next/image per ottimizzazione
-import styles from '../styles/Home.module.css';
+import styles from '../styles/Home.module.css'; // Importa il CSS
 
 export default function Boldro() {
-  const [selectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const images = [
-    { src: '/boldro1.jpg', alt: 'Puffo' },
-    { src: '/boldro2.jpg', alt: 'Boxer' },
-    { src: '/boldro3.jpg', alt: 'Personaggio 3' }, // Nome più neutro
+    { src: '/boldro1.jpg', alt: 'Immagine 1' },
+    { src: '/boldro2.jpg', alt: 'Immagine 2' },
+    { src: '/boldro3.jpg', alt: 'Immagine 3' },
   ];
 
-  
+  const handleClick = (index) => {
+    setSelectedImage(images[index].src);
+  };
 
   return (
     <div className={styles.container}>
@@ -26,22 +27,20 @@ export default function Boldro() {
 
       <h1 className={styles.title}>Scegli il Boldro</h1>
 
-      {/* Pulsanti di selezione */}
+      {/* Tre pulsanti per selezionare l'immagine */}
       <div className={styles.buttons}>
-        {images.map((image, index) => (
-          <button key={index} onClick={() => handleClick(index)} className={styles.button}>
-            {image.alt}
-          </button>
-        ))}
+        <button onClick={() => handleClick(0)} className={styles.button}>Puffo</button>
+        <button onClick={() => handleClick(1)} className={styles.button}>Boxer</button>
+        <button onClick={() => handleClick(2)} className={styles.button}>Ebreo</button>
       </div>
 
-      {/* Mostra l'immagine selezionata */}
+      {/* Se un'immagine è selezionata, la visualizziamo */}
       {selectedImage && (
         <div className={styles.imageContainer}>
           <h2>Boldro Selezionato</h2>
-          <Image src={selectedImage} alt="Immagine Selezionata" width={400} height={300} className={styles.selectedImage} />
+          <img src={selectedImage} alt="Immagine Selezionata" className={styles.selectedImage} />
         </div>
       )}
     </div>
   );
-}
+} 

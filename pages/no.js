@@ -1,10 +1,9 @@
+// pages/no.js
 import Image from "next/image";
 import Link from "next/link";
 import styles from '../styles/Home.module.css'; // Importa il CSS qui
 
 export default function No() {
-  
-  
   return (
     <div className={styles.container}>
       <div className={styles.menu}>
@@ -19,6 +18,7 @@ export default function No() {
         <Image src="/sbirro.png" alt="Poliziotto" width={300} height={300} />
         <p>Sei stato arrestato!</p>
       </div>
+
     </div>
   );
-}
+} 

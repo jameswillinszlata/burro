@@ -1,12 +1,9 @@
-'use client';
-
+// pages/destra.js
 import Image from "next/image";
 import Link from "next/link";
-import styles from '../styles/Home.module.css';
+import styles from '../styles/Home.module.css'; // Aggiungi il CSS qui
 
 export default function Destra() {
-  
-
   return (
     <div className={styles.container}>
       <div className={styles.menu}>
@@ -21,6 +18,7 @@ export default function Destra() {
         <p>Ora puoi avere la White Coco Zlata!</p>
         <Image src="/white-coco.jpeg" alt="White Coco Zlata" width={300} height={300} />
       </div>
+
     </div>
   );
-}
+} 

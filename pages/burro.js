@@ -1,22 +1,16 @@
+// pages/burro.js
 'use client';
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from 'react'; // Importa useRef per la gestione dell'audio
+import { useState } from 'react';
 import styles from '../styles/Home.module.css';
 
 export default function Burro() {
   const [iban, setIban] = useState('');
-  
 
   const handleInputChange = (event) => {
     setIban(event.target.value); // Gestisce l'input dell'IBAN
-  };
-
-  const handleSubmit = () => {
-    // Invia l'IBAN (aggiungi il comportamento desiderato)
-    alert(`IBAN Inviato: ${iban}`);
-    // Puoi implementare qui un'azione per inviare l'IBAN (come una chiamata API)
   };
 
   return (
@@ -37,7 +31,7 @@ export default function Burro() {
           value={iban}
           onChange={handleInputChange}
         />
-        <button onClick={handleSubmit}>Invia IBAN</button>
+        <button>Invia IBAN</button>
       </div>
     </div>
   );
