@@ -2,27 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect, useRef } from 'react'; // Importa useRef per la gestione dell'audio
+import { useState } from 'react'; // Importa useRef per la gestione dell'audio
 import styles from '../styles/Home.module.css';
 
 export default function Burro() {
   const [iban, setIban] = useState('');
-  const sound = useRef(null); // Riferimento per l'audio
-
-  useEffect(() => {
-    // Verifica se il codice è eseguito nel browser
-    if (typeof window !== "undefined") {
-      sound.current = new Audio('/hack.mp3'); // Crea il suono
-      sound.current.loop = true; // Ripetizione del suono
-      sound.current.play();
-
-      // Pulizia quando la pagina viene lasciata
-      return () => {
-        sound.current.pause();
-        sound.current.currentTime = 0;
-      };
-    }
-  }, []);
+  
 
   const handleInputChange = (event) => {
     setIban(event.target.value); // Gestisce l'input dell'IBAN

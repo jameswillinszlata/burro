@@ -1,36 +1,11 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
 import Image from "next/image";
 import Link from "next/link";
 import styles from '../styles/Home.module.css';
 
 export default function Destra() {
-  const audioRef = useRef(null);
-
-  useEffect(() => {
-    // Creiamo l'audio solo quando il componente è montato
-    audioRef.current = new Audio('/yes.mp3');
-    const audio = audioRef.current;
-    audio.loop = true;
-
-    // Proviamo a riprodurre il suono
-    const playAudio = async () => {
-      try {
-        await audio.play();
-      } catch (error) {
-        console.error("Autoplay non consentito:", error);
-      }
-    };
-
-    playAudio();
-
-    // Cleanup quando il componente si smonta
-    return () => {
-      audio.pause();
-      audio.currentTime = 0;
-    };
-  }, []);
+  
 
   return (
     <div className={styles.container}>

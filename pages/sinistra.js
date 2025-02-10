@@ -2,38 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState, useRef } from "react"; // Aggiungi useRef
+import {  useState } from "react"; // Aggiungi useRef
 import styles from '../styles/Home.module.css';
 
 export default function Sinistra() {
-  const [isImageVisible, setIsImageVisible] = useState(true); // Stato per mostrare l'immagine animata
-  const [showScippato, setShowScippato] = useState(false); // Stato per mostrare l'immagine finale
+  const [isImageVisible, ] = useState(true); // Stato per mostrare l'immagine animata
+  const [showScippato, ] = useState(false); // Stato per mostrare l'immagine finale
 
-  const soundAnimata = useRef(new Audio('/spavento.mp3')); // Usando useRef per gestire l'audio
-  const soundFinale = useRef(new Audio('/haram.mp3')); // Usando useRef per gestire l'audio finale
-
-  useEffect(() => {
-    const soundAnimataRef = soundAnimata;  // Crea una variabile locale per il ref
-    const soundFinaleRef = soundFinale;  // Crea una variabile locale per il ref
-    soundAnimataRef.play();
   
-    const timer = setTimeout(() => {
-      setIsImageVisible(false);
-      setShowScippato(true);
-  
-      soundAnimataRef.pause();
-      soundAnimataRef.currentTime = 0;
-      soundFinaleRef.play();
-    }, 3000);
-  
-    return () => {
-      clearTimeout(timer);
-      soundAnimataRef.pause();
-      soundAnimataRef.currentTime = 0;
-      soundFinaleRef.pause();
-      soundFinaleRef.currentTime = 0;
-    };
-  }, []);
   
   return (
     <div className={styles.container}>

@@ -4,29 +4,15 @@ import Image from 'next/image'; // Usa next/image per ottimizzazione
 import styles from '../styles/Home.module.css';
 
 export default function Boldro() {
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [audio, setAudio] = useState(null); // Stato per la gestione dell'audio
+  const [selectedImage] = useState(null);
 
   const images = [
-    { src: '/boldro1.jpg', alt: 'Puffo', sound: '/sound1.mp3' },
-    { src: '/boldro2.jpg', alt: 'Boxer', sound: '/sound2.mp3' },
-    { src: '/boldro3.jpg', alt: 'Personaggio 3', sound: '/sound3.mp3' }, // Nome più neutro
+    { src: '/boldro1.jpg', alt: 'Puffo' },
+    { src: '/boldro2.jpg', alt: 'Boxer' },
+    { src: '/boldro3.jpg', alt: 'Personaggio 3' }, // Nome più neutro
   ];
 
-  const playSound = (soundPath) => {
-    if (audio) {
-      audio.pause(); // Ferma il suono precedente
-      audio.currentTime = 0;
-    }
-    const newAudio = new Audio(soundPath);
-    setAudio(newAudio);
-    newAudio.play();
-  };
-
-  const handleClick = (index) => {
-    setSelectedImage(images[index].src);
-    playSound(images[index].sound);
-  };
+  
 
   return (
     <div className={styles.container}>
