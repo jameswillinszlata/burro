@@ -1,22 +1,19 @@
-// pages/sinistra.js
 'use client';
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react"; // Importa useState e useEffect per la gestione del timer
+import { useEffect, useState, useRef } from "react"; // Aggiungi useRef
 import styles from '../styles/Home.module.css';
 
 export default function Sinistra() {
   const [isImageVisible, setIsImageVisible] = useState(true); // Stato per mostrare l'immagine animata
   const [showScippato, setShowScippato] = useState(false); // Stato per mostrare l'immagine finale
 
-  // Carica i suoni
-  const soundAnimata = new Audio('/spavento.mp3'); // Suono per l'immagine animata
-  const soundFinale = new Audio('/haram.mp3'); // Suono per l'immagine finale
+  const soundAnimata = useRef(new Audio('/spavento.mp3')); // Usando useRef per gestire l'audio
+  const soundFinale = useRef(new Audio('/haram.mp3')); // Usando useRef per gestire l'audio finale
 
   useEffect(() => {
-    // Riproduce il suono dell'immagine animata quando la pagina viene caricata
-    soundAnimata.play();
+    soundAnimata.current.play(); // Suono per l'immagine animata
 
     // Mostra l'immagine animata per 3 secondi e poi sostituiscila con l'immagine finale
     const timer = setTimeout(() => {
@@ -24,17 +21,17 @@ export default function Sinistra() {
       setShowScippato(true); // Mostra l'immagine finale
 
       // Ferma il suono dell'immagine animata e avvia il suono finale
-      soundAnimata.pause();
-      soundAnimata.currentTime = 0; // Resetta il suono animato
-      soundFinale.play(); // Riproduce il suono finale
+      soundAnimata.current.pause();
+      soundAnimata.current.currentTime = 0; // Resetta il suono animato
+      soundFinale.current.play(); // Riproduce il suono finale
     }, 3000); // 3 secondi
 
     // Funzione di pulizia per fermare i suoni quando si lascia la pagina
     const stopAudio = () => {
-      soundAnimata.pause();
-      soundAnimata.currentTime = 0;
-      soundFinale.pause();
-      soundFinale.currentTime = 0;
+      soundAnimata.current.pause();
+      soundAnimata.current.currentTime = 0;
+      soundFinale.current.pause();
+      soundFinale.current.currentTime = 0;
     };
 
     // Aggiungi l'event listener per fermare il suono quando l'utente lascia la pagina
@@ -44,10 +41,10 @@ export default function Sinistra() {
     return () => {
       clearTimeout(timer);
       window.removeEventListener('beforeunload', stopAudio);
-      soundAnimata.pause();  // Ferma il suono animato
-      soundAnimata.currentTime = 0;
-      soundFinale.pause(); // Ferma il suono finale
-      soundFinale.currentTime = 0;
+      soundAnimata.current.pause();  // Ferma il suono animato
+      soundAnimata.current.currentTime = 0;
+      soundFinale.current.pause(); // Ferma il suono finale
+      soundFinale.current.currentTime = 0;
     };
   }, []); // L'array vuoto assicura che l'effetto venga eseguito solo una volta al caricamento
 

@@ -1,8 +1,7 @@
-// pages/index.js
 'use client';
 
 import Image from "next/image";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 
@@ -11,39 +10,58 @@ export default function Home() {
   const [showTemporaryImage, setShowTemporaryImage] = useState(false);
   const [showImburrato, setShowImburrato] = useState(false);
 
-  // Carica i suoni
-  const soundIniziale = new Audio('/burro.mp3'); // Suono quando la pagina viene caricata
-  const soundIntermedio = new Audio('/ops.mp3'); // Suono quando compare l'immagine temporanea
-  const soundFinale = new Audio('/imburrato.mp3'); // Suono quando compare "Imburrato"
+  // Ref per i suoni
+  const soundIniziale = useRef(null);
+  const soundIntermedio = useRef(null);
+  const soundFinale = useRef(null);
+  const timeoutRef1 = useRef(null);
+  const timeoutRef2 = useRef(null);
 
   useEffect(() => {
-    // Riproduce il suono iniziale quando la pagina viene caricata
-    soundIniziale.play();
+    // Inizializza gli audio
+    soundIniziale.current = new Audio('/burro.mp3');
+    soundIntermedio.current = new Audio('/ops.mp3');
+    soundFinale.current = new Audio('/imburrato.mp3');
 
-    // Pulisce il suono quando si lascia la pagina
+    // Prova a riprodurre il suono iniziale
+    const playAudio = async () => {
+      try {
+        await soundIniziale.current.play();
+      } catch (error) {
+        console.error("Autoplay bloccato:", error);
+      }
+    };
+    
+    playAudio();
+
+    // Cleanup per evitare memory leak
     return () => {
-      soundIniziale.pause();
-      soundIniziale.currentTime = 0;
-      soundIntermedio.pause();
-      soundIntermedio.currentTime = 0;
-      soundFinale.pause();
-      soundFinale.currentTime = 0;
+      soundIniziale.current.pause();
+      soundIniziale.current.currentTime = 0;
+      soundIntermedio.current.pause();
+      soundIntermedio.current.currentTime = 0;
+      soundFinale.current.pause();
+      soundFinale.current.currentTime = 0;
+
+      // Cancella eventuali timeout
+      clearTimeout(timeoutRef1.current);
+      clearTimeout(timeoutRef2.current);
     };
   }, []);
 
   const sbustareBurro = () => {
     setIsBurroClicked(true);
-    setShowTemporaryImage(true); // Mostra l'immagine temporanea
+    setShowTemporaryImage(true);
 
     // Dopo 1 secondo, cambia immagine e suono
-    setTimeout(() => {
+    timeoutRef1.current = setTimeout(() => {
       setShowTemporaryImage(false);
-      setShowImburrato(true); // Mostra l'immagine finale
-      soundIntermedio.play(); // Suono per l'immagine intermedia
+      setShowImburrato(true);
+      soundIntermedio.current.play();
 
-      // Dopo un altro secondo, riproduci il suono finale
-      setTimeout(() => {
-        soundFinale.play(); // Suono quando appare "Imburrato"
+      // Dopo un altro secondo, riproduce il suono finale
+      timeoutRef2.current = setTimeout(() => {
+        soundFinale.current.play();
       }, 1000);
     }, 1000);
   };

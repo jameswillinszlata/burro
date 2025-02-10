@@ -1,25 +1,37 @@
-// pages/zlata.js
 'use client';
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import styles from '../styles/Home.module.css';
 
 export default function Zlata() {
-  const sound = new Audio('/mexico.mp3'); // Sostituisci con il tuo file audio
+  const sound = useRef(null); // Usando useRef per l'audio
 
   useEffect(() => {
-    // Avvia il suono quando la pagina viene caricata
-    sound.loop = true; // Fa ripetere il suono
-    sound.play();
+    // Crea l'oggetto audio al caricamento della pagina
+    sound.current = new Audio('/mexico.mp3');
+    sound.current.loop = true; // Fa ripetere il suono
+    sound.current.play(); // Avvia il suono
 
-    // Pulisce il suono quando si lascia la pagina
-    return () => {
-      sound.pause();
-      sound.currentTime = 0;
+    // Funzione di pulizia per fermare l'audio quando si lascia la pagina
+    const stopAudio = () => {
+      sound.current.pause();
+      sound.current.currentTime = 0;
     };
-  }, []);
+
+    // Aggiunge un listener per fermare il suono quando la pagina viene lasciata
+    window.addEventListener('beforeunload', stopAudio);
+
+    // Pulizia dell'event listener quando il componente viene smontato
+    return () => {
+      window.removeEventListener('beforeunload', stopAudio);
+      if (sound.current) {
+        sound.current.pause();
+        sound.current.currentTime = 0;
+      }
+    };
+  }, []); // Esegui questo effetto solo al caricamento della pagina
 
   return (
     <div className={styles.container}>
@@ -32,7 +44,7 @@ export default function Zlata() {
       </div>
 
       <div className={styles.zlata}>
-        <img src="/magre.jpeg" alt="Magre" width={300} height={300}/>
+        <Image src="/magre.jpeg" alt="Magre" width={300} height={300} />
         <p>Vuoi la White Coco Zlata?</p>
         
         <div>

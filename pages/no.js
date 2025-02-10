@@ -1,23 +1,20 @@
-// pages/no.js
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from 'react'; // Importa useEffect per gestire il suono
+import { useEffect, useRef } from 'react'; // Importa useRef
 import styles from '../styles/Home.module.css'; // Importa il CSS qui
 
 export default function No() {
-  useEffect(() => {
-    // Crea un oggetto Audio per il suono
-    const audio = new Audio('/police.mp3'); // Percorso del suono
+  const audio = useRef(new Audio('/police.mp3')); // Usa useRef per l'audio
 
-    // Avvia il suono al caricamento della pagina
-    audio.play();
+  useEffect(() => {
+    audio.current.play(); // Riproduce il suono al caricamento della pagina
 
     // Cleanup per evitare memory leaks
     return () => {
-      audio.pause();
-      audio.currentTime = 0;
+      audio.current.pause();
+      audio.current.currentTime = 0;
     };
-  }, []); // L'array vuoto fa sì che l'effetto venga eseguito solo una volta quando la pagina è caricata
+  }, []); // L'array vuoto fa sì che l'effetto venga eseguito solo una volta al caricamento
 
   return (
     <div className={styles.container}>

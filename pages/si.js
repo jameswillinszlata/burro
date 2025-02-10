@@ -1,22 +1,21 @@
-// pages/si.js
 'use client';
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react'; // Importa useRef
 import styles from '../styles/Home.module.css'; // Importa il CSS qui
 
 export default function Si() {
-  const audio = new Audio('/dipre.mp3'); // Carica il suono desiderato
+  const audio = useRef(new Audio('/dipre.mp3')); // Usando useRef per la gestione dell'audio
 
   // Funzione per avviare il suono quando la pagina viene caricata
   useEffect(() => {
-    audio.play(); // Riproduce il suono
+    audio.current.play(); // Riproduce il suono
 
     // Funzione di pulizia per fermare il suono quando si lascia la pagina
     const stopAudio = () => {
-      audio.pause();  // Ferma il suono
-      audio.currentTime = 0; // Resetta il suono alla posizione iniziale
+      audio.current.pause();  // Ferma il suono
+      audio.current.currentTime = 0; // Resetta il suono alla posizione iniziale
     };
 
     // Aggiungi l'event listener per fermare il suono quando l'utente lascia la pagina
@@ -25,7 +24,7 @@ export default function Si() {
     // Rimuovi l'event listener quando la pagina è scaricata
     return () => {
       window.removeEventListener('beforeunload', stopAudio);
-      audio.pause();  // Ferma il suono in caso l'utente lasci la pagina prima
+      audio.current.pause();  // Ferma il suono in caso l'utente lasci la pagina prima
     };
   }, []); // L'array vuoto assicura che l'effetto venga eseguito solo una volta al caricamento
 
@@ -47,4 +46,3 @@ export default function Si() {
     </div>
   );
 }
-

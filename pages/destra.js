@@ -1,23 +1,34 @@
-// pages/destra.js
 'use client';
 
+import { useEffect, useRef } from 'react';
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from 'react';
 import styles from '../styles/Home.module.css';
 
 export default function Destra() {
-  const sound = new Audio('/yes.mp3'); // Sostituisci con il tuo file audio
+  const audioRef = useRef(null);
 
   useEffect(() => {
-    // Avvia il suono quando la pagina viene caricata
-    sound.loop = true; // Fa ripetere il suono
-    sound.play();
+    // Creiamo l'audio solo quando il componente è montato
+    audioRef.current = new Audio('/yes.mp3');
+    const audio = audioRef.current;
+    audio.loop = true;
 
-    // Pulisce il suono quando si lascia la pagina
+    // Proviamo a riprodurre il suono
+    const playAudio = async () => {
+      try {
+        await audio.play();
+      } catch (error) {
+        console.error("Autoplay non consentito:", error);
+      }
+    };
+
+    playAudio();
+
+    // Cleanup quando il componente si smonta
     return () => {
-      sound.pause();
-      sound.currentTime = 0;
+      audio.pause();
+      audio.currentTime = 0;
     };
   }, []);
 
