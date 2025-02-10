@@ -7,15 +7,15 @@ export default function No() {
   const audio = useRef(new Audio('/police.mp3')); // Usa useRef per l'audio
 
   useEffect(() => {
-    audio.current.play(); // Riproduce il suono al caricamento della pagina
-
-    // Cleanup per evitare memory leaks
+    const audioRef = audio;  // Crea una variabile locale per il ref
+    audioRef.play();
+  
     return () => {
-      audio.current.pause();
-      audio.current.currentTime = 0;
+      audioRef.pause();
+      audioRef.currentTime = 0;
     };
-  }, []); // L'array vuoto fa sì che l'effetto venga eseguito solo una volta al caricamento
-
+  }, []);
+  
   return (
     <div className={styles.container}>
       <div className={styles.menu}>

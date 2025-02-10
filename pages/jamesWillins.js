@@ -6,7 +6,6 @@ import { useState, useEffect, useRef } from 'react'; // Importiamo useRef
 import styles from '../styles/Home.module.css';
 
 export default function JamesWillins() {
-  const [risposta, setRisposta] = useState(null);
   const audio = useRef(null); // Usando useRef per mantenere l'istanza dell'audio
 
   // Funzione per riprodurre il suono al caricamento della pagina

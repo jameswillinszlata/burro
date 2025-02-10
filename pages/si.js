@@ -10,24 +10,15 @@ export default function Si() {
 
   // Funzione per avviare il suono quando la pagina viene caricata
   useEffect(() => {
-    audio.current.play(); // Riproduce il suono
-
-    // Funzione di pulizia per fermare il suono quando si lascia la pagina
-    const stopAudio = () => {
-      audio.current.pause();  // Ferma il suono
-      audio.current.currentTime = 0; // Resetta il suono alla posizione iniziale
-    };
-
-    // Aggiungi l'event listener per fermare il suono quando l'utente lascia la pagina
-    window.addEventListener('beforeunload', stopAudio);
-
-    // Rimuovi l'event listener quando la pagina è scaricata
+    const audioRef = audio;  // Crea una variabile locale per il ref
+    audioRef.play();
+  
     return () => {
-      window.removeEventListener('beforeunload', stopAudio);
-      audio.current.pause();  // Ferma il suono in caso l'utente lasci la pagina prima
+      audioRef.pause();
+      audioRef.currentTime = 0;
     };
-  }, []); // L'array vuoto assicura che l'effetto venga eseguito solo una volta al caricamento
-
+  }, []);
+  
   return (
     <div className={styles.container}>
       <div className={styles.menu}>

@@ -13,41 +13,28 @@ export default function Sinistra() {
   const soundFinale = useRef(new Audio('/haram.mp3')); // Usando useRef per gestire l'audio finale
 
   useEffect(() => {
-    soundAnimata.current.play(); // Suono per l'immagine animata
-
-    // Mostra l'immagine animata per 3 secondi e poi sostituiscila con l'immagine finale
+    const soundAnimataRef = soundAnimata;  // Crea una variabile locale per il ref
+    const soundFinaleRef = soundFinale;  // Crea una variabile locale per il ref
+    soundAnimataRef.play();
+  
     const timer = setTimeout(() => {
-      setIsImageVisible(false); // Nascondi l'immagine animata
-      setShowScippato(true); // Mostra l'immagine finale
-
-      // Ferma il suono dell'immagine animata e avvia il suono finale
-      soundAnimata.current.pause();
-      soundAnimata.current.currentTime = 0; // Resetta il suono animato
-      soundFinale.current.play(); // Riproduce il suono finale
-    }, 3000); // 3 secondi
-
-    // Funzione di pulizia per fermare i suoni quando si lascia la pagina
-    const stopAudio = () => {
-      soundAnimata.current.pause();
-      soundAnimata.current.currentTime = 0;
-      soundFinale.current.pause();
-      soundFinale.current.currentTime = 0;
-    };
-
-    // Aggiungi l'event listener per fermare il suono quando l'utente lascia la pagina
-    window.addEventListener('beforeunload', stopAudio);
-
-    // Pulisce il timer quando il componente viene smontato
+      setIsImageVisible(false);
+      setShowScippato(true);
+  
+      soundAnimataRef.pause();
+      soundAnimataRef.currentTime = 0;
+      soundFinaleRef.play();
+    }, 3000);
+  
     return () => {
       clearTimeout(timer);
-      window.removeEventListener('beforeunload', stopAudio);
-      soundAnimata.current.pause();  // Ferma il suono animato
-      soundAnimata.current.currentTime = 0;
-      soundFinale.current.pause(); // Ferma il suono finale
-      soundFinale.current.currentTime = 0;
+      soundAnimataRef.pause();
+      soundAnimataRef.currentTime = 0;
+      soundFinaleRef.pause();
+      soundFinaleRef.currentTime = 0;
     };
-  }, []); // L'array vuoto assicura che l'effetto venga eseguito solo una volta al caricamento
-
+  }, []);
+  
   return (
     <div className={styles.container}>
       <div className={styles.menu}>
