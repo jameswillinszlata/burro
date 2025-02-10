@@ -1,4 +1,4 @@
-// pages/zlata.js
+// pages/destra.js
 'use client';
 
 import Image from "next/image";
@@ -6,8 +6,8 @@ import Link from "next/link";
 import { useEffect } from 'react';
 import styles from '../styles/Home.module.css';
 
-export default function Zlata() {
-  const sound = new Audio('/mexico.mp3'); // Sostituisci con il tuo file audio
+export default function Destra() {
+  const sound = new Audio('/yes.mp3'); // Sostituisci con il tuo file audio
 
   useEffect(() => {
     // Avvia il suono quando la pagina viene caricata
@@ -32,17 +32,8 @@ export default function Zlata() {
       </div>
 
       <div className={styles.zlata}>
-        <img src="/magre.jpeg" alt="Magre" width={300} height={300}/>
-        <p>Vuoi la White Coco Zlata?</p>
-        
-        <div>
-          <Link href="/destra">
-            <button className={styles.button}>Destra</button>
-          </Link>
-          <Link href="/sinistra">
-            <button className={styles.button}>Sinistra</button>
-          </Link>
-        </div>
+        <p>Ora puoi avere la White Coco Zlata!</p>
+        <Image src="/white-coco.jpeg" alt="White Coco Zlata" width={300} height={300} />
       </div>
     </div>
   );

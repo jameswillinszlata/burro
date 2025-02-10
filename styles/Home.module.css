@@ -5,34 +5,45 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: linear-gradient(45deg, #ffbd69, #ff9f00);
-  padding: 20px;
-  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #1e1e2f, #2a2a44); /* sfondo scuro */
+  padding: 30px;
+  font-family: 'Roboto', sans-serif;
   text-align: center;
+  color: #fff;
+  overflow: hidden;
 }
 
 /* Menu di navigazione */
 .menu {
   position: absolute;
-  top: 20px;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 25px;
   font-size: 18px;
+  font-weight: 500;
+  text-transform: uppercase;
+  opacity: 0; /* Inizialmente nascosto per l'animazione */
+  animation: fadeInMenu 1s ease-out forwards 0.5s; /* Animazione di fade-in per il menu */
 }
 
 .menu a {
-  color: white;
+  color: #fff;
   text-decoration: none;
-  font-weight: bold;
-  padding: 8px 15px;
-  border-radius: 5px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .menu a:hover {
   background-color: rgba(255, 255, 255, 0.3);
-  color: #ff9f00;
+  color: #ff8a00;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
 }
 
 /* Centrare dell'immagine */
@@ -40,8 +51,16 @@
   max-width: 100%;
   height: auto;
   display: block;
-  margin: 0 auto;  /* Centra l'immagine */
-  border-radius: 10px;
+  margin: 30px auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  opacity: 0; /* Inizialmente nascosta */
+  animation: fadeInImage 1.5s ease-out forwards 1s; /* Animazione di fade-in per l'immagine */
+}
+
+.image:hover {
+  transform: scale(1.05);
 }
 
 /* Sezione "Imburrato" */
@@ -51,39 +70,303 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  margin-top: 40px;
+  opacity: 0; /* Inizialmente nascosta */
+  animation: fadeInHome 1.5s ease-out forwards 1.5s; /* Animazione di fade-in per la sezione "home" */
 }
 
 .burro {
   cursor: pointer;
   display: inline-block;
   margin-top: 20px;
+  padding: 15px 30px;
+  background-color: #ff8a00;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.burro:hover {
+  background-color: #e52e71;
+  transform: translateY(-4px);
 }
 
 .burro p {
-  font-size: 20px;
+  font-size: 18px;
   margin-top: 10px;
-  color: white;
+  color: #fff;
   font-weight: bold;
+  letter-spacing: 1px;
 }
 
 /* Stile quando l'utente è imburrato */
 .home p {
-  font-size: 30px;
-  font-weight: bold;
+  font-size: 36px;
+  font-weight: 700;
   color: #ffffff;
   margin-top: 20px;
 }
 
 .imburrato-img {
-  width: 80%;  /* Imposta la larghezza dell'immagine "imburrato" */
+  width: 70%;
   max-width: 600px;
   height: auto;
+  border-radius: 15px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  opacity: 0; /* Inizialmente nascosta */
+  animation: fadeInImage 1.5s ease-out forwards 2s; /* Animazione di fade-in per l'immagine imburrata */
+}
+
+.imburrato-img:hover {
+  transform: scale(1.05);
 }
 
 /* Per il testo grande della scritta */
 .home .message {
-  font-size: 40px;
-  color: white;
-  font-weight: bold;
+  font-size: 48px;
+  color: #fff;
+  font-weight: 800;
   margin-top: 30px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: fadeInMessage 2s ease-out forwards 2.5s; /* Animazione di fade-in per il messaggio */
+}
+
+/* Animazioni */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInMenu {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInHome {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInImage {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInMessage {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Stile moderno per i bottoni */
+.button {
+  background-color: #ff9f00; /* Colore di base */
+  color: white; /* Testo bianco */
+  border: 2px solid #ff9f00; /* Bordo dello stesso colore del bottone */
+  padding: 12px 25px; /* Spaziatura interna */
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase; /* Testo in maiuscolo */
+  border-radius: 50px; /* Bordi arrotondati */
+  cursor: pointer;
+  transition: all 0.3s ease-in-out; /* Transizione fluida */
+  display: inline-block;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Leggera ombra */
+}
+
+/* Effetto hover per il bottone */
+.button:hover {
+  background-color: #ffffff; /* Cambia il colore di sfondo al passaggio del mouse */
+  color: #ff9f00; /* Cambia il colore del testo */
+  border-color: #ff9f00; /* Cambia il colore del bordo */
+  transform: translateY(-5px); /* Sposta il bottone verso l'alto */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Aumenta l'ombra */
+}
+
+/* Effetto focus per il bottone (quando è selezionato) */
+.button:focus {
+  outline: none; /* Rimuove il bordo di focus predefinito */
+  box-shadow: 0 0 5px 3px rgba(255, 159, 0, 0.5); /* Ombra intorno al bottone */
+}
+/* Animazione per l'immagine che oscilla avanti e indietro */
+@keyframes oscillare {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(10px);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Classe per l'immagine animata */
+.image-oscillante {
+  animation: oscillare 1s ease-in-out infinite;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* Nascondi immagine quando il tempo è scaduto */
+.image-hidden {
+  display: none;
+}
+/* Animazione per l'immagine temporanea */
+/* Animazione per far pulsare l'immagine */
+@keyframes pulsazione {
+  0% {
+    transform: scale(1); /* Dimensione originale */
+  }
+  50% {
+    transform: scale(1.1); /* Ingrandisce un po' l'immagine */
+  }
+  100% {
+    transform: scale(1); /* Torna alla dimensione originale */
+  }
+}
+
+/* Classe per l'immagine che pulsa */
+.image-temporanea {
+  animation: pulsazione 1.5s ease-in-out infinite; /* Pulsazione continua */
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+/* Animazione per far apparire la scritta con effetto slide-up e fade-in */
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px); /* Inizia più basso e trasparente */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* Arriva nella sua posizione finale */
+  }
+}
+
+/* Stile per la scritta */
+.jamesWillins p {
+  font-size: 36px; /* Grandezza del testo */
+  font-weight: bold; /* Grassetto */
+  color: #ff9f00; /* Colore che contrasta bene con lo sfondo */
+  animation: slideUp 1s ease-out; /* Animazione che fa salire e far apparire la scritta */
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5); /* Ombra per migliorare la visibilità */
+  margin-top: 20px; /* Spazio sopra il testo */
+}
+/* Animazione della scritta */
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.zlata p {
+  font-size: 36px;
+  font-weight: bold;
+  color: #ff9f00;
+  animation: slideUp 1s ease-out;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5); /* Ombra per rendere il testo visibile */
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Stile per i bottoni */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.button {
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #ff9f00;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+}
+
+.button:hover {
+  background-color: #ffbd69; /* Colore più chiaro al passaggio del mouse */
+  transform: scale(1.1); /* Effetto di ingrandimento al passaggio del mouse */
+}
+
+.button:focus {
+  outline: none;
+}
+
+
+/* Contenitore dell'immagine selezionata */
+.imageContainer {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.imageContainer h2 {
+  font-size: 24px;
+  color: #ff9f00;
+  margin-bottom: 15px;
+}
+
+/* Immagine selezionata con dimensioni ridotte */
+.selectedImage {
+  max-width: 70%;  /* Riduce la larghezza */
+  max-height: 300px;  /* Limita l'altezza */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  margin-top: 10px;
+  transition: transform 0.3s;
+}
+
+.selectedImage:hover {
+  transform: scale(1.05);
 }
