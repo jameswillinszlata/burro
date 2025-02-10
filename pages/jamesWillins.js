@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect, useRef } from 'react'; // Importiamo useRef
+import {  useEffect, useRef } from 'react'; // Importiamo useRef
 import styles from '../styles/Home.module.css';
 
 export default function JamesWillins() {
